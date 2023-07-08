@@ -118,7 +118,7 @@ class Migration_Version_550 extends CI_Migration
 						(24, 'Reception', 'reception', 1, 3, 1, '2019-05-26 22:23:00');");
 		
 		$this->db->query("ALTER TABLE `front_cms_setting` ADD `google_analytics` text AFTER `working_hours`;");
-		$this->db->query("ALTER TABLE `front_cms_setting` ADD `primary_color` varchar(100) NOT NULL DEFAULT '#ff685c' AFTER `google_analytics`;");
+		$this->db->query("ALTER TABLE `front_cms_setting` ADD `primary_color` varchar(100) NOT NULL DEFAULT '#009bdb' AFTER `google_analytics`;");
 		$this->db->query("ALTER TABLE `front_cms_setting` ADD `menu_color` varchar(100) NOT NULL DEFAULT '#fff' AFTER `primary_color`;");
 		$this->db->query("ALTER TABLE `front_cms_setting` ADD `hover_color` varchar(100) NOT NULL DEFAULT '#f04133' AFTER `menu_color`;");
 		$this->db->query("ALTER TABLE `front_cms_setting` ADD `text_color` varchar(100) NOT NULL DEFAULT '#232323' AFTER `hover_color`;");

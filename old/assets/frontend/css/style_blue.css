@@ -299,7 +299,7 @@ h6 {
 }
 
 .news-post-box h5 a:hover {
-    color: #ff685c;
+    color: #009bdb;
     text-decoration: none;
 }
 
@@ -4711,7 +4711,7 @@ ul#doctors-grid.grid>li>.bio-box {
     margin: 0 0 14px;
     line-height: 27px;
     padding: 0;
-    color: #ff685c;
+    color: #009bdb;
     font-size: 18px;
     position: relative;
     overflow: hidden;

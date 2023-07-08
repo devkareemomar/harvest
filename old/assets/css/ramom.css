@@ -51,7 +51,7 @@
 }
 
 html.dark .box-top-line.line-color-primary {
-	border-color: #ff685c;
+	border-color: #009bdb;
 }
 
 /* Widget Screen Responsive */
@@ -163,7 +163,7 @@ html.dark .tab-content .panel .panel-footer-custom {
 }
 
 html.dark .chart-title:before {
-    background-color: #ff685c;
+    background-color: #009bdb;
 }
 
 /* page header title */
@@ -185,7 +185,7 @@ html.dark .chart-title:before {
 }
 
 html.dark .page-header .page-title-icon {
-	border-color: #ff685c;
+	border-color: #009bdb;
 	color: #7D7D7D;
 	box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.18);
 }
@@ -245,7 +245,7 @@ html.dark .thememenu-sy .theme-box .theme-img {
 
 html.dark .thememenu-sy .theme-box .theme-img:hover {
 	box-shadow: 1px 2px 4px 3px #2d2d2d;
-	border-color: #ff685c;
+	border-color: #009bdb;
 }
 
 .thememenu-sy .theme-box .theme-img:before {
@@ -264,7 +264,7 @@ html.dark .thememenu-sy .theme-box .theme-img:hover {
 	line-height: 50px;
 	text-align: center;
 	border-radius: 8px;
-	background: #ff685c;
+	background: #009bdb;
 	visibility: hidden;
 	opacity: 0;
 	transition: all 0.3s;
@@ -274,7 +274,7 @@ html.dark .thememenu-sy .theme-box .theme-img:hover {
 	border-color: #ffbd2e;
 }
 html.dark .thememenu-sy .theme-box input:checked + .theme-img {
-	border-color: #ff685c;
+	border-color: #009bdb;
 }
 
 .thememenu-sy .theme-box input:checked + .theme-img:before {
@@ -307,16 +307,16 @@ html.dark .thememenu-sy .theme-box input:checked + .theme-img {
 html.dark .mailbox .nav-pills > li > a:hover,
 html.dark .mailbox .nav-pills > li > a:focus {
 	background: rgba(62,70,75,0.301);
-	border-left-color: #ff685c;
-	color: #ff685c;
+	border-left-color: #009bdb;
+	color: #009bdb;
 }
 
 html.dark .mailbox .nav-pills > li.active > a,
 html.dark .mailbox .nav-pills > li.active > a:hover,
 html.dark .mailbox .nav-pills > li.active > a:focus {
 	background: rgba(62,70,75,0.301);
-	border-left: 3px solid #ff685c;
-	color: #ff685c;
+	border-left: 3px solid #009bdb;
+	color: #009bdb;
 }
 
 .mailbox .nav-pills a .label {
@@ -328,7 +328,7 @@ html.dark .mailbox .nav-pills > li.active > a:focus {
 }
 
 html.dark .mailbox .nav-pills a .label {
-	background-color: #ff685c;
+	background-color: #009bdb;
 }
 
 input[type="number"]::-webkit-outer-spin-button,
@@ -457,7 +457,7 @@ input[type="number"] {
 }
 
 html.dark .profile-head ul li .icon-holder:before {
-    background: #ff685c;
+    background: #009bdb;
     box-shadow: 0 2px 4px #4b4b4b;
 }
 	
@@ -721,7 +721,7 @@ html.dark .daterangepicker .ranges li:hover {
 }
 
 html.dark .daterangepicker .ranges li.active {
-	background-color: #ff685c;
+	background-color: #009bdb;
 	color: #fff;
 }
 
@@ -755,7 +755,7 @@ html.dark .daterangepicker th.available:hover {
 
 html.dark .daterangepicker td.active,
 html.dark .daterangepicker td.active:hover {
-	background-color: #ff685c;
+	background-color: #009bdb;
 	color: #fff;
 }
 
@@ -829,7 +829,7 @@ html.dark .session-top-hig {
 }
 
 html.dark .headers-line {
-    color: #ff685c;
+    color: #009bdb;
 }
 
 .headers-line:before,
@@ -969,7 +969,7 @@ html.dark .popover.top > .arrow:after {
 }
 
 html.dark .quick_image .user-img-circle {
-	border-color: #ff685c;
+	border-color: #009bdb;
 	box-shadow: 5px 3px 8px 0 rgba(33, 33, 33, 0.56);
 }
 
@@ -1319,7 +1319,7 @@ html.dark .invoice-summary ul.amounts li {
 }
 
 html.dark .material-switch > .label-primary {
-    background-color: #ff685c !important;
+    background-color: #009bdb !important;
 }
 
 /* Data Table Buttons Custom CSS */

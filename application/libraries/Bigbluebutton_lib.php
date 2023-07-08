@@ -45,6 +45,7 @@ class Bigbluebutton_lib {
         $createMeetingParams->setAutoStartRecording($data['set_record'] ? true : true);
         $createMeetingParams->setLogoutUrl($urlLogout);
 
+       
         $response = $bbb->createMeeting($createMeetingParams);
         if ($response->getReturnCode() == 'FAILED') {
             return false;

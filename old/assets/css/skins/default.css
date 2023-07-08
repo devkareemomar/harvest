@@ -67,7 +67,7 @@ body .btn-primary.dropdown-toggle {
 	background-color: #ffbd2e;
 }
 html.dark .select2-container--bootstrap .select2-results__option--highlighted[aria-selected] {
-	background-color: #ff685c;
+	background-color: #009bdb;
 }
 
 .select2-container--bootstrap .select2-dropdown {
@@ -106,8 +106,8 @@ body .btn-primary[disabled] {
 html.dark body .btn-primary {
 	color: #ffffff;
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-	background-color: #ff685c;
-	border-color: #ff685c;
+	background-color: #009bdb;
+	border-color: #009bdb;
 }
 
 html.dark body .btn-primary:hover {
@@ -393,7 +393,7 @@ ul.nav-main > li.nav-active > a {
 }
 
 html.dark ul.nav-main > li.nav-active > a {
-	box-shadow: 2px 0 0 #ff685c inset;
+	box-shadow: 2px 0 0 #009bdb inset;
 }
 
 ul.nav-main > li.nav-active > i {
@@ -405,7 +405,7 @@ ul.nav-main li .nav-children li.nav-active > a {
 }
 
 html.dark ul.nav-main li .nav-children li.nav-active > a {
-	color: #ff685c;
+	color: #009bdb;
 }
 
 html.sidebar-light:not(.dark) ul.nav-main > li.nav-active > a {
@@ -417,7 +417,7 @@ html.no-overflowscrolling .nano > .nano-pane > .nano-slider {
 }
 
 html.dark.no-overflowscrolling .nano > .nano-pane > .nano-slider {
-	background: #ff685c;
+	background: #009bdb;
 }
 /* Nav Pills */
 .nav-pills > .active a,
@@ -465,8 +465,8 @@ html.dark .pagination > li.active a:hover,
 html.dark .pagination > li.active span:hover,
 html.dark .pagination > li.active a:focus,
 html.dark .pagination > li.active span:focus {
-	background-color: #ff685c;
-	border-color: #ff685c;
+	background-color: #009bdb;
+	border-color: #009bdb;
 }
 
 html .pagination > li.active a {
@@ -474,7 +474,7 @@ html .pagination > li.active a {
 }
 
 html.dark .pagination > li.active a {
-	background-color: #ff685c;
+	background-color: #009bdb;
 }
 /* Fullcalendar */
 .fc .fc-toolbar h2:before {
@@ -540,7 +540,7 @@ html.dark .timeline.timeline-simple .tm-body .tm-items > li:before {
 	color: #ffbd2e;
 }
 html.dark .panel-group .panel-accordion .panel-heading a {
-	color: #ff685c;
+	color: #009bdb;
 }
 /* Alerts */
 .alert-primary {

@@ -1,11 +1,11 @@
 /* Google Web Fonts */
 
 :root {
-    --thm-primary: #ff685c;
+    --thm-primary: #009bdb;
     --thm-text: #232323;
     --thm-secondary-text: #8d8d8d;
-    --thm-hover: #ed4235;
-    --thm-footer-text: #ed4235;
+    --thm-hover: #009bdb;
+    --thm-footer-text: #009bdb;
     --thm-primary-rgb: 0, 155, 219;
     --thm-black: #000;
     --thm-radius: 5px;

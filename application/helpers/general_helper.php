@@ -480,3 +480,32 @@ function delete_dir($dirPath)
     }
     return false;
 }
+
+
+
+function getRecordings($meetingID)
+{
+    $CI = &get_instance();  
+    
+    $getMeeting = $CI->live_class_model->get('live_class', array('meeting_id' => $meetingID), true);
+    
+        if (empty($getMeeting)) {
+            set_alert('error', translate('Meeting Not Found.'));
+            redirect(base_url('live_class'));
+        }
+        
+        // get BBB api config
+        $getConfig = $CI->live_class_model->get('live_class_config', array('branch_id' => $getMeeting['branch_id']), true);
+        $api_keys = array(
+            'bbb_security_salt' => $getConfig['bbb_salt_key'],
+            'bbb_server_base_url' => $getConfig['bbb_server_base_url'],
+        );
+        $CI->load->library('bigbluebutton_lib', $api_keys);
+        
+        $arrayBBB = ['meeting_id' => $getMeeting['meeting_id'],];
+
+        $response = $CI->bigbluebutton_lib->getRecordings($arrayBBB);
+
+        $array =json_decode(json_encode(simplexml_load_string(file_get_contents(($response)))));
+        return $array->recordings->recording;
+}

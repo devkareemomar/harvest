@@ -15,7 +15,7 @@ class Sms_model extends CI_Model
         $this->load->library("bulk");
         $this->load->library("textlocal");
         $this->load->library("smscountry");
-        $this->load->library("bulksmsbd");
+        $this->load->library("bulk");
         $this->load->library("custom_sms");
     }
 

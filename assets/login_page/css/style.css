@@ -389,7 +389,7 @@ html.dark .checkbox-replace .i-checks > i {
 }
 
 html.dark .checkbox-replace .i-checks input:checked + i{
-	border-color: #ff685c;
+	border-color: #009bdb;
 }
 
 .checkbox-replace .i-checks input:checked + i:before {
@@ -400,7 +400,7 @@ html.dark .checkbox-replace .i-checks input:checked + i{
 }
 
 html.dark .checkbox-replace .i-checks input:checked + i:before {
-	background-color: #ff685c;
+	background-color: #009bdb;
 }
 
 .checkbox-replace .i-checks input:disabled + i {

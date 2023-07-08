@@ -1,9 +1,13 @@
 <?php
+
+use BigBlueButton\Parameters\GetRecordingsParameters;
+use BigBlueButton\Responses\GetRecordingsResponse;
+
 defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * @package : Ramom school management system
- * @version : 6.0
+ * @version : 5.0
  * @developed by : RamomCoder
  * @support : ramomcoder@yahoo.com
  * @author url : http://codecanyon.net/user/RamomCoder
@@ -31,13 +35,42 @@ class Live_class extends Admin_Controller
         $this->form_validation->set_rules('class_id', translate('class'), 'trim|required');
         $this->form_validation->set_rules('section[]', translate('section'), 'trim|required');
         $this->form_validation->set_rules('date', translate('date'), 'trim|required');
-        $this->form_validation->set_rules('time_start', translate('time_start'), 'trim|required|callback_timeslot_validation');
-        $this->form_validation->set_rules('time_end', translate('time_end'), 'trim|required');
-        $this->form_validation->set_rules('duration', translate('duration'), 'trim|required');
+        $this->form_validation->set_rules('expire_date', translate('expire_date'), 'trim|required');
+        // $this->form_validation->set_rules('time_start', translate('time_start'), 'trim|required|callback_timeslot_validation');
+        // $this->form_validation->set_rules('time_end', translate('time_end'), 'trim|required');
+        // $this->form_validation->set_rules('duration', translate('duration'), 'trim|required');
     }
 
     public function index()
     {
+
+    //     // get BBB api config
+    //     $getConfig = $this->live_class_model->get('live_class_config', array('branch_id' => 1), true);
+    //     $api_keys = array(
+    //         'bbb_security_salt' => $getConfig['bbb_salt_key'],
+    //         'bbb_server_base_url' => $getConfig['bbb_server_base_url'],
+    //     );
+    //     $this->load->library('bigbluebutton_lib', $api_keys);
+
+        
+       
+
+    //     $response = $this->bigbluebutton_lib->getRecordings();
+    
+    //    print_r($response);
+    // //    die();
+
+    // //    die();
+    //         $path = "http://biggerbluebutton.com/bigbluebutton/HarvestDistanceLearning2020/".$response;
+    //         $array =json_decode(json_encode(simplexml_load_string(file_get_contents(($path)))));
+    //         echo "<pre>";
+            
+    //         foreach($array->recordings->recording as $test){
+
+    //         }
+    //         print_r($array);
+    //         die();
+
         if (!get_permission('live_class', 'is_view')) {
             access_denied();
         }
@@ -48,9 +81,6 @@ class Live_class extends Admin_Controller
                 $this->zoom_validation();
                 if ($method == 2) {
                     $this->form_validation->set_rules('meeting_id', translate('meeting_id'), 'trim|required');
-                }
-                if ($method == 3) {
-                    $this->form_validation->set_rules('gmeet_url', "Gmeet URL", 'trim|required');
                 }
                 if ($this->form_validation->run() !== false) {
 					// save all route information in the database file
@@ -85,14 +115,15 @@ class Live_class extends Admin_Controller
                             'meeting_id' => "", 
                             'meeting_password' => "", 
                             'own_api_key' => $api_type, 
-                            'duration' => $post['duration'], 
+                            // 'duration' => $post['duration'], 
                             'bbb' => "", 
                             'class_id' => $post['class_id'], 
                             'section_id' => json_encode($this->input->post('section')), 
                             'remarks' => $post['remarks'], 
                             'date' => date("Y-m-d", strtotime($post['date'])), 
-                            'start_time' => date("H:i", strtotime($post['time_start'])), 
-                            'end_time' => date("H:i", strtotime($post['time_end'])), 
+                            'expire_date' => date("Y-m-d", strtotime($post['expire_date'])), 
+                            // 'start_time' => date("H:i", strtotime($post['time_start'])), 
+                            // 'end_time' => date("H:i", strtotime($post['time_end'])), 
                             'created_by' => get_loggedin_user_id(), 
                             'branch_id' => $branchID,
                             'setting' => array(
@@ -104,7 +135,6 @@ class Live_class extends Admin_Controller
                                 'option_mute_participants' => $this->input->post("option_mute_participants"), 
                             )
                         );
-
                         $response = $this->zoom_lib->createMeeting($arrayZoom);
                         if (!empty($response->code)) {
                             set_alert('error', "The Token Signature resulted invalid when verified using the algorithm");
@@ -124,9 +154,8 @@ class Live_class extends Admin_Controller
                         $this->live_class_model->save($arrayZoom);
 
                     } elseif ($method == 2) {
+                        
                         $this->live_class_model->bbb_class_save($post);
-                    } elseif ($method == 3) {
-                        $this->live_class_model->gmeet_save($post);
                     }
 
                     //send live class sms notification
@@ -238,6 +267,8 @@ class Live_class extends Admin_Controller
                 } else {
                     set_alert('error', "Meeting does not exist.");
                 }
+                    $this->db->where('id', $id);
+                    $this->db->delete('live_class');
             } else {
                 $this->db->where('id', $id);
                 $this->db->delete('live_class');
@@ -281,10 +312,10 @@ class Live_class extends Admin_Controller
 
     public function hostModal()
     {
-        if (get_permission('live_class', 'is_add')) {
+        // if (get_permission('live_class', 'is_add')) {
             $this->data['meetingID'] = $this->input->post('meeting_id');
             echo $this->load->view('live_class/hostModal', $this->data, true);
-        }
+        // }
     }
 
     public function zoom_meeting_start()
@@ -311,6 +342,9 @@ class Live_class extends Admin_Controller
         }
         $bbb_config = json_decode($getMeeting['bbb'], true);
         
+
+
+        
         // get BBB api config
         $getConfig = $this->live_class_model->get('live_class_config', array('branch_id' => $getMeeting['branch_id']), true);
         $api_keys = array(
@@ -332,6 +366,10 @@ class Live_class extends Admin_Controller
         );
 
         $response = $this->bigbluebutton_lib->createMeeting($arrayBBB);
+        //     echo "<pre>";
+
+        // print_r($response);
+        // die();
         if ($response == false) {
             set_alert('error', "Can\'t create room! please contact our administrator.");
             redirect(base_url('live_class'));
@@ -403,5 +441,36 @@ class Live_class extends Admin_Controller
         }
         return true;
     }
+    
+    public function recordings($meetingID){
+        if (!get_permission('live_class', 'is_view')) {
+            access_denied();
+        }
 
+        $recordings = getRecordings($meetingID);
+        
+        // echo "<pre>";
+        // print_r($recordings);
+        // die();
+        $this->data['recordings'] =  $recordings;
+        $this->data['title']      = translate('live_class_recordings');
+        $this->data['main_menu']  = 'live_class';
+        $this->data['sub_page']   = 'live_class/recordings';
+
+       return $this->load->view('layout/index', $this->data);
+    }
+
+
+    public function recordingModal()
+    {
+        // if (get_permission('live_class', 'is_add')) {
+            $this->data['url'] = $this->input->post('url');
+
+
+            echo $this->load->view('live_class/recordingModal', $this->data, true);
+        // }
+    }
 }
+
+
+

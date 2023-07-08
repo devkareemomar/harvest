@@ -18,18 +18,19 @@ $row = $this->db->get()->row_array();
 		<?php }  ?>
 	</div>
 	<div class="col-md-4">
-		<label><span class="text-weight-semibold"><i class="far fa-calendar"></i> <?=translate('date')?></span> : <span class="text-dark"><?=_d($row['date'])?></span></label><br>
-		<label><span class="text-weight-semibold"><i class="far fa-clock"></i> <?=translate('start_time')?></span> : <span class="text-dark"><?php echo date("h:i A", strtotime($row['start_time'])); ?></span> </label><br>
-		<label><span class="text-weight-semibold"><i class="far fa-clock"></i> <?=translate('end_time')?></span> : <span class="text-dark"><?php echo date("h:i A", strtotime($row['end_time'])); ?></span> </label><br>
+		<label><span class="text-weight-semibold"><i class="far fa-calendar"></i> <?=translate('start date')?></span> : <span class="text-dark"><?=_d($row['date'])?></span></label><br>
+		<label><span class="text-weight-semibold"><i class="far fa-calendar"></i> <?=translate('expier date')?></span> : <span class="text-dark"><?=_d($row['expire_date'])?></span></label><br>
+		<!-- <label><span class="text-weight-semibold"><i class="far fa-clock"></i> <?=translate('start_time')?></span> : <span class="text-dark"><?php echo date("h:i A", strtotime($row['start_time'])); ?></span> </label><br> -->
+		<!-- <label><span class="text-weight-semibold"><i class="far fa-clock"></i> <?=translate('end_time')?></span> : <span class="text-dark"><?php echo date("h:i A", strtotime($row['end_time'])); ?></span> </label><br> -->
 		<label><span class="text-weight-semibold"><i class="far fa-user-circle"></i> <?=translate('host') . " " . translate('by')?></span> : <span class="text-dark"><?=$row['staffname']?></span></label><br>
 		<label><span class="text-weight-semibold"> <?=translate('status')?></span> : <?php  
 								$status = '<i class="far fa-clock"></i> ' . translate('waiting');
 								$labelmode = 'label-info-custom';
-								if (strtotime($row['date']) == strtotime(date("Y-m-d")) && strtotime($row['start_time']) <= time()) {
+								if (strtotime($row['expire_date']) > strtotime(date("Y-m-d"))) {
 									$status = '<i class="fas fa-video"></i> ' . translate('live');
 									$labelmode = 'label-success-custom';
 								}
-								if (strtotime($row['date']) < strtotime(date("Y-m-d")) || strtotime($row['end_time']) <= time()) {
+								if (strtotime($row['expire_date']) < strtotime(date("Y-m-d"))) {
 									$status = '<i class="far fa-check-square"></i> ' . translate('expired');
 									$labelmode = 'label-danger-custom';
 								}
@@ -45,10 +46,8 @@ if ($row['live_class_method'] == 1) {
 ?>
 		<a href="<?=base_url('live_class/zoom_meeting_start?meeting_id=' . $row['meeting_id'] . "&live_id=" . $row['id'])?>" class="btn btn-default mt-md mb-md"><i class="fas fa-video"></i> <?=translate('host_live_class')?></a>
 		<a href="<?=$startURL?>" class="btn btn-default mb-md">Host By Zoom APP</a>
-<?php } elseif($row['live_class_method'] == 2) { ?>
+<?php } else { ?>
 	<a href="<?=base_url('live_class/bbb_meeting_start?meeting_id=' . $row['meeting_id'] . "&live_id=" . $row['id'])?>" class="btn btn-default mt-md mb-md"><i class="fas fa-video"></i> <?=translate('host_live_class')?></a>
-<?php } elseif($row['live_class_method'] == 3) { ?>
-	<a href="<?=json_decode($row['bbb'])->join_url?>" class="btn btn-default mt-md mb-md"><i class="fas fa-video"></i> <?=translate('host_live_class')?></a>
 <?php } ?>
 	</div>
 </div>

@@ -99,7 +99,7 @@ html.dark .header .menu-icon-grid > a {
 
 html.dark .header .menu-icon-grid > a:hover {
     color: #fff;
-    background: #ff685c;
+    background: #009bdb;
 }
 
 /* Layout Base - Inner Wrapper */
@@ -3418,7 +3418,7 @@ ul.nav-main li a i {
 }
 
 html.dark ul.nav-main li a i {
-	color: #ff685c;
+	color: #009bdb;
 }
 
 ul.nav-main li a span.label {
@@ -4125,7 +4125,7 @@ ul.nav-list.primary > li a {
 }
 
 html.dark .scrollable .scrollable-slider {
-	background-color: #ff685c;
+	background-color: #009bdb;
 }
 
 .scrollable.scrollable-padding .scrollable-content {
@@ -4178,7 +4178,7 @@ html.dark .text-muted {
 }
 
 html.dark .text-primary {
-	color: #ff685c !important;
+	color: #009bdb !important;
 }
 
 .text-secondary {
@@ -5166,7 +5166,7 @@ html.dark .checkbox-replace .i-checks > i {
 }
 
 html.dark .checkbox-replace .i-checks input:checked + i{
-	border-color: #ff685c;
+	border-color: #009bdb;
 }
 
 .checkbox-replace .i-checks input:checked + i:before {
@@ -5177,7 +5177,7 @@ html.dark .checkbox-replace .i-checks input:checked + i{
 }
 
 html.dark .checkbox-replace .i-checks input:checked + i:before {
-	background-color: #ff685c;
+	background-color: #009bdb;
 }
 
 .checkbox-replace .i-checks input:disabled + i {
@@ -6596,7 +6596,7 @@ html.dark .header-menu .header-menubox {
 }
 
 html.dark .header-menu .open .hbox ul li a:hover {
-	background: #ff685c;
+	background: #009bdb;
 }
 
 /* notification menu - emails */
@@ -6850,7 +6850,7 @@ html.dark .userbox .dropdown-menu ul > li:not(.user-p-box) a {
 }
 
 html.dark .userbox.open .dropdown-menu ul > li:not(.user-p-box) a:hover {
-	background: #ff685c;
+	background: #009bdb;
 }
 
 .userbox .dropdown-menu ul > li:not(.user-p-box) a i {
@@ -7300,7 +7300,7 @@ html.dark .panel {
 
 html.dark .panel-heading {
 	background: #363636;
-	border-bottom-color: #ff685c;
+	border-bottom-color: #009bdb;
 }
 
 html.dark .panel-actions a:hover {
@@ -7667,7 +7667,7 @@ html.dark .nav-tabs li.active a,
 html.dark .nav-tabs li.active a:hover,
 html.dark .nav-tabs li.active a:focus,
 html.dark .nav-tabs li a {
-	color: #ff685c;
+	color: #009bdb;
 }
 
 html.dark .tab-content {
@@ -7712,7 +7712,7 @@ html.dark .tab-content {
 }
 
 html.dark .tabs-custom .nav-tabs > li > a:after {
-	background-color: #ff685c;
+	background-color: #009bdb;
 }
 
 .tabs-custom .nav-tabs > li.active > a:before {
@@ -7730,7 +7730,7 @@ html.dark .tabs-custom .nav-tabs > li > a:after {
 }
 
 html.dark .tabs-custom .nav-tabs > li.active > a:before {
-	background-color: #ff685c;
+	background-color: #009bdb;
 }
 
 .tabs-custom .nav-tabs > li.active > a:after,
@@ -7974,7 +7974,7 @@ html.dark .progress {
 }
 
 html.dark .panel-group .panel-accordion .panel-heading {
-	border-color: #ff685c;
+	border-color: #009bdb;
 }
 
 .panel-group .panel-accordion .panel-heading a {
@@ -8179,7 +8179,7 @@ html.dark .toggle > label {
 }
 
 html.dark .label-primary {
-	background: #ff685c;
+	background: #009bdb;
 	color: #FFF;
 }
 
@@ -11820,7 +11820,7 @@ html.dark .bootstrap-timepicker-widget table td a {
 }
 html.dark .bootstrap-timepicker-widget table td a:hover {
 	border-color: #363636;
-	background-color: #ff685c;
+	background-color: #009bdb;
 }
 html.dark .bootstrap-timepicker-widget table td input {
 	background-color: #303030;
@@ -13073,7 +13073,7 @@ html.dark .on_answer_box > li a.que_btn {
 }
 
 html.dark .on_answer_box > li a.que_btn.active {
-	background-color:  #ff685c;
+	background-color:  #009bdb;
 }
 
 .on_answer_box > li > a {

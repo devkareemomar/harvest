@@ -3,7 +3,7 @@
 		<ul class="nav nav-tabs">
 			<li class="active">
                 <a href="#list" data-toggle="tab">
-                    <i class="fas fa-list-ul"></i> <?=translate('live_class') ." ". translate('list')?>
+                    <i class="fas fa-list-ul"></i> <?=translate('lessons') ." ". translate('list')?>
                 </a>
 			</li>
 <?php if (get_permission('live_class', 'is_add')): ?>
@@ -40,13 +40,16 @@ endif;
 							<th><?=translate('meeting_id')?></th>
 							<th><?=translate('class')?></th>
 							<th><?=translate('section')?></th>
-							<th><?=translate('date')?></th>
-							<th><?=translate('start_time')?></th>
-							<th><?=translate('end_time')?></th>
+							<th><?=translate('start date')?></th>
+							<th><?=translate('expire date')?></th>
+							<!-- <th><?=translate('start_time')?></th>
+							<th><?=translate('end_time')?></th> -->
 							<th><?=translate('created_by')?></th>
 							<th><?=translate('status')?></th>
+							<th><?=translate('recordings')?></th>
 							<th><?=translate('created_at')?></th>
 							<th><?=translate('action')?></th>
+
 						</tr>
 					</thead>
 					<tbody>
@@ -59,42 +62,44 @@ endif;
 <?php if (is_superadmin_loggedin()): ?>
 							<td><?php echo $row['branchname'];?></td>
 <?php endif; ?>
-							<td><?php 
-							if ($row['live_class_method'] == 1) {
-								echo 'Zoom';
-							} elseif ($row['live_class_method'] == 2) {
-								echo 'BigBlueButton';
-							} elseif ($row['live_class_method'] == 3) {
-								echo 'Google Meet';
-							} ?></td>
+							<td><?php echo $row['live_class_method'] == 1 ? 'Zoom' : 'BigBlueButton'; ?></td>
 							<td><?php echo $row['title']; ?></td>
 							<td><?php echo $row['meeting_id']; ?></td>
 							<td><?php echo $row['class_name'];?></td>
 							<td><?php echo $row['section_details'];?></td>
 							<td><?php echo _d($row['date']);?></td>
-                            <td><?php echo date("h:i A", strtotime($row['start_time'])); ?></td>
-                            <td><?php echo date("h:i A", strtotime($row['end_time'])); ?></td>
+							<td><?php echo _d($row['expire_date']);?></td>
+                            <!-- <td><?php echo date("h:i A", strtotime($row['start_time'])); ?></td>
+                            <td><?php echo date("h:i A", strtotime($row['end_time'])); ?></td> -->
 							<td><?php echo $row['staffname']; ?></td>
 							<td>
 								<?php  
 								$status = '<i class="far fa-clock"></i> ' . translate('waiting');
 								$labelmode = 'label-info-custom';
-								if (strtotime($row['date']) == strtotime(date("Y-m-d")) && strtotime($row['start_time']) <= time()) {
+								if (strtotime($row['expire_date']) > strtotime(date("Y-m-d")) ) {
 									$status = '<i class="fas fa-video"></i> ' . translate('live');
 									$labelmode = 'label-success-custom';
 								}
-								if (strtotime($row['date']) < strtotime(date("Y-m-d")) && strtotime($row['end_time']) <= time()) {
+								if (strtotime($row['expire_date']) < strtotime(date("Y-m-d"))) {
 									$status = '<i class="far fa-check-square"></i> ' . translate('expired');
 									$labelmode = 'label-danger-custom';
 								}
 								echo "<span class='label " . $labelmode . " '>" . $status . "</span>";
 								?>
 							</td>
+							<td class="text-center">
+							<a href="<?=base_url('live_class/recordings/'.$row['meeting_id'])?>" class="btn btn-circle btn-default icon" ?>
+										<i class="fas fa-video"></i>
+									</a>
+							</td>
 							<td><?php echo _d($row['created_at']);?></td>
+							
+
+							
 							<td class="min-w-c">
 								<!-- host link -->
 								<a href="javascript:void(0);" class="btn btn-circle btn-default icon" data-toggle="tooltip" data-original-title="<?=translate('host')?>" 
-								onclick="getHostModal('<?=$row['meeting_id'] . "|" . $row['id'] ?>');">
+									onclick="getHostModal('<?=$row['meeting_id'] . "|" . $row['id'] ?>');">
 									<i class="fas fa-network-wired"></i>
 								</a>
 							<?php  if (get_permission('live_class', 'is_delete')) { ?>
@@ -167,8 +172,7 @@ endif;
 								$arrayMethod = array(
 									'' => translate('select'),
 									1 => "Zoom",
-									2 => "BigBlueButton",
-									3 => "Google Meet"
+									2 => "BigBlueButton"
 								);
 								echo form_dropdown("live_class_method", $arrayMethod, set_value('live_class_method'), "class='form-control' id='live_class_method'
 								data-plugin-selectTwo data-width='100%' data-minimum-results-for-search='Infinity' ");
@@ -176,6 +180,7 @@ endif;
 							<span class="error"></span>
 						</div>
 					</div>
+
 					<div class="form-group hidden-div" id="zoom_config">
                         <div class="col-md-offset-3 col-md-6">
                             <div class="checkbox-replace">
@@ -236,18 +241,8 @@ endif;
 						</div>
 					</div>
 
-					<div class="form-group hidden-div" id="gmeet">
-						<div class="form-group">
-							<label class="col-md-3 control-label">Gmeet URL <span class="required">*</span></label>
-							<div class="col-md-6">
-								<input type="text" class="form-control" name="gmeet_url" value="" />
-								<span class="error"></span>
-							</div>
-						</div>
-					</div>
-
 					<div class="form-group">
-						<label class="col-md-3 control-label"><?=translate('date')?> <span class="required">*</span></label>
+						<label class="col-md-3 control-label"><?=translate('start date')?> <span class="required">*</span></label>
 						<div class="col-md-6">
 							<div class="input-group">
 								<span class="input-group-addon"><i class="far fa-calendar-alt"></i></span>
@@ -258,6 +253,17 @@ endif;
 						<span class="error"></span>
 					</div>
 					<div class="form-group">
+						<label class="col-md-3 control-label"><?=translate('expire date')?> <span class="required">*</span></label>
+						<div class="col-md-6">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="far fa-calendar-alt"></i></span>
+								<input type="text" class="form-control" name="expire_date" value="<?=set_value('expire_date', date('Y-m-d'))?>" data-plugin-datepicker
+								data-plugin-options='{ "todayHighlight" : true }' />
+							</div>
+						</div>
+						<span class="error"></span>
+					</div>
+					<!-- <div class="form-group">
 						<label class="col-md-3 control-label"><?php echo translate('time_slot'); ?> <span class="required">*</span></label>
 						<div class="col-md-6">
 							<div class="row">
@@ -277,15 +283,15 @@ endif;
 							</div>
 							
 						</div>
-					</div>
+					</div> -->
 
-					<div class="form-group">
+					<!-- <div class="form-group">
 						<label class="col-md-3 control-label"><?php echo translate('duration'); ?> <span class="required">*</span></label>
 						<div class="col-md-6">
 							<input type="text" class="form-control" name="duration" id="duration"  readonly value="0" />
 							<span class="error"></span>
 						</div>
-					</div>
+					</div> -->
 					<div class="form-group">
 						<label class="col-md-3 control-label"><?=translate('remarks')?></label>
 						<div class="col-md-6 mb-md">
